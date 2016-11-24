@@ -37,16 +37,3 @@ type WorldBankRepository() =
             where (country.Name.Equals(country))
             select country.Indicators
         }
-
-    member this.GetIndicatorForCountry (country:string) (indicator:string) =
-        let country = query {
-            for country in ctx.Countries do
-            where (country.Name.Equals(country))
-            select country
-            exactlyOneOrDefault
-        }
-        query {
-            for indicator in country.Indicators do
-            where (indicator.Name.Equals(indicator))
-            select indicator
-        }

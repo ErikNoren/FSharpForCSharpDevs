@@ -7,19 +7,19 @@ type xmlData = FSharp.Data.XmlProvider<Sample = """<?xml version="1.0"?><catalog
 type XmlDataRepository() =
     let ctx = xmlData.Load(Settings.DataDirectoryRoot + "XMLDataFile.xml")
     
-    member this.GetBookTitles =
+    member this.BookTitles =
         query {
             for book in ctx.Books do
             select book.Title
         }
 
-    member this.GetBookData =
+    member this.Books =
         query {
             for book in ctx.Books do
             select book
         }
 
-    member this.GetAuthorList =
+    member this.Authors =
         query {
             for book in ctx.Books do
             select book.Author

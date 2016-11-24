@@ -45,18 +45,3 @@ type NorthwindRepository() =
             where (orders.Order.CustomerID = customerId)
             select orders
         }
-
-    member this.AverageDiscount =
-        query {
-            for od in ctx.Order_Details do
-            select od.Discount
-        }
-        |> Seq.average
-
-    member this.GetAverageDiscountForCustomer customerId =
-        query {
-            for od in ctx.Order_Details do
-            where (od.Order.CustomerID = customerId)
-            select od.Discount
-        }
-        |> Seq.average
